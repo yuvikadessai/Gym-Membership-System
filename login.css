@@ -1,0 +1,156 @@
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding:0px;
+}
+
+.navbar{
+  background-color:rgb(255, 255, 255,0.23) ;
+  margin:20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  gap:40px;
+  padding:10px
+}
+nav ul{
+  list-style: none;
+}
+nav li{
+  margin-right: 15px;
+  display: inline;
+
+}
+.name{
+    color: #ffffff;
+  font-size: 25px;
+  font-family:fantasy;
+  text-shadow: 0 0 10px #a8ff98;
+}
+nav a{
+  /* display: block; */
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+nav a:hover{
+  color: #97d17f;
+}
+
+body {
+  background-image: linear-gradient(to left,#6f6c6c,rgb(0, 0, 0));
+  min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+  margin: 0; /* Removes default body margin */
+}
+
+
+.title {
+  font-size: 40px;
+  color: #a8ff98;
+  text-shadow: 0 0 10px #a8ff98;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.container{
+  margin-left: 400px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  
+}
+
+
+
+
+
+
+input[type="email"],
+input[type="password"]{
+  padding: 10px 15px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.btn {
+  margin-top: 30px;
+   background-color: #97d17f;
+  color: #000;
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  display: block;
+  margin-left: 400px;
+  
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #7bb962;
+}
+
+.click p {
+    margin-left: 400px;
+    margin-top: 20px;
+    color: #ffffff;
+    margin-bottom: 91px;
+}
+
+
+
+.register-link a {
+  color: white;
+  text-decoration: underline;
+} 
+
+.footer .copyright {
+    text-align: center;
+    font-size: 12px;
+    color: #aaa;
+}
+
+
+  .footer {
+    background-color: #222;
+    color: #eee;
+    padding: 30px 20px;
+    font-family: Arial, sans-serif;
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.footer-container div {
+    flex: 1;
+    margin: 10px;
+    min-width: 200px;
+}
+.footer a {
+    color: #90ee90;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+.footer h3, .footer h4 {
+    color: #fff;
+}
+.footer p, .footer ul {
+    font-size: 14px;
+    line-height: 1.6;
+}
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+.footer ul li {
+    margin-bottom: 8px;
+}
+.socials a {
+    margin-right: 10px;
+}
