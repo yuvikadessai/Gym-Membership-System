@@ -348,3 +348,116 @@ hr {
       margin-right: 10px;
   }
 
+/* General gym container */
+.gym-container {
+  color: white;
+  padding: 40px 20px;
+}
+
+/* ========== Heading section ========== */
+.heading {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+}
+
+.heading h1 {
+  text-shadow: 0 0 5px rgb(30, 184, 143), 0 0 10px rgb(43, 170, 79), 0 0 20px rgb(30, 174, 109);
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
+
+.heading p {
+  font-size: 2rem;
+  line-height: 1.5;
+}
+
+/* ========== Exercise section styling ========== */
+.exercise {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Target each group of <h2>, <img>, <p> */
+.exercise h2,
+.exercise img,
+.exercise p {
+  flex: 1 1 100%;
+}
+
+/* Arrange h2, img, and p as block groups of two per row */
+.exercise h2 {
+  text-shadow: 0 0 5px rgb(30, 184, 143), 0 0 10px rgb(43, 170, 79), 0 0 20px rgb(30, 174, 109);
+  width: 100%;
+  font-size: 2.8rem;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.exercise img.image {
+  width: 45%;
+  height: 700px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  margin: 10px;
+  float: left;
+}
+
+.exercise p {
+  width: 45%;
+  font-size: 2.2rem;
+  line-height: 1.5;
+  margin: 10px;
+  float: right;
+  text-align: justify;
+}
+
+/* Clear floats every 3 elements (after p) */
+.exercise p::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* ========== Members section styling ========== */
+.members-container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.members-container h1 {
+  text-shadow: 0 0 5px rgb(30, 184, 143), 0 0 10px rgb(43, 170, 79), 0 0 20px rgb(30, 174, 109);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.members-container > p {
+  font-size: 2.3rem;
+  margin-bottom: 30px;
+}
+
+.members h2 {
+  text-shadow: 0 0 5px rgb(30, 184, 143), 0 0 10px rgb(43, 170, 79), 0 0 20px rgb(30, 174, 109);
+  font-size: 2.5rem;
+  margin-top: 30px;
+}
+
+.members p {
+  font-style: italic;
+  font-size: 2.2rem;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px auto 20px auto;
+  max-width: 600px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  color: #ccc;
+  text-align: justify;
+} 
