@@ -15,7 +15,8 @@ html {
     align-items: center;
     justify-content: center;
     gap:40px;
-    padding:10px
+    padding:10px;
+    position:relative;
   }
   nav ul{
     list-style: none;
@@ -230,10 +231,8 @@ hr {
 
 .logo {
     height: 80px;          /* small size */
-    position: absolute;    /* position it absolutely */
-    left: 10px;            /* distance from left edge */
-    top: 50%;              /* vertically center */
-    transform: translateY(-50%);
+    display:flex;    /* position it absolutely */
+    align-items: center;
 }
 
 .container{
