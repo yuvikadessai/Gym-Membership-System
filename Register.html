@@ -30,33 +30,30 @@
   <div class="container">
     <h3 class="title">Register Now</h3>
    
-    <form class="register-form" action="/register" method="POST">
+    <form class="register-form" action="http://localhost:8000/register" method="POST">
       <div class="form-group">
-        <input type="text" placeholder="First Name" required />
-        <input type="text" placeholder="Last Name" required />
-        <input type="date" placeholder="DOB" required />
+        <input type="text" name="firstname" placeholder="First Name" required />
+        <input type="text" name="lastname" placeholder="Last Name" required />
+        <input type="date"name="dob" placeholder="DOB" required />
       </div>
       <div class="form-group">
-        <input type="email" placeholder="Email" required />
-        <input type="tel" placeholder="Phone Number" required />
-        <input type="text" placeholder="Gender" required />
+        <input type="email" name="email"placeholder="Email" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <input type="text" name="gender" placeholder="Gender" required />
       </div>
       <div class="form-group">
-        <input type="password" placeholder="Password" required />
-        <input type="text" placeholder="Address" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <input type="text" name="address" placeholder="Address" required />
       </div>
-      
+      <div class="click">
+        <button type="submit" class="btn">Sign Up</button>
+        <br>
+        <p class="login-link">Already Registered? <a href="login.html">Login</a></p>
+    </div>
     </form>
   </div>
-
-  <div class="click">
-      <button type="submit" class="btn">Sign Up</button>
-      <br>
-      <p class="login-link">Already Registered? <a href="login.html">Login</a></p>
-  </div>
   
-
-
+  
     <!-- ✅ Footer Section -->
     <footer class="footer">
         <div class="footer-container">
@@ -89,10 +86,5 @@
     </footer>
 
 
-
-
-
-
 </body>
-
 </html>
