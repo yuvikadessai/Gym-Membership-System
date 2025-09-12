@@ -27,10 +27,13 @@ router.post("/", (req, res) => {
             if (err) return res.status(500).json({ error: "Error comparing passwords" });
             if (!isMatch) return res.status(401).json({ error: "Invalid password" });
 
-            const insertLogin = "INSERT INTO login (email, login_time) VALUES (?, NOW())";
-            db.query(insertLogin, [email], (err2) => {
-                if (err2) return res.status(500).json({ error: "Login tracking failed" });
-
+            const insertLogin =`INSERT INTO login (email,password, login_time) VALUES (?,?, NOW())
+            ON DUPLICATE KEY UPDATE login_time = NOW()`;
+            db.query(insertLogin, [email, user.password], (err2) => {
+                if (err2) {
+                    console.log("Insert Error: ", err2);
+                    return res.status(500).json({ error: err2.sqlMessage });
+            }
                 res.json({
                     message: "✅ Login successful",
                     user: { id: user.id, email: user.email }
