@@ -55,8 +55,8 @@ body {
 
 .container{
   margin-left: 400px;
-  margin-top: 60px;
-  margin-bottom: 40px;
+  margin-top:60px;
+  margin-bottom:40px;
   
 }
 
@@ -84,7 +84,7 @@ input[type="password"]{
   border-radius: 30px;
   cursor: pointer;
   display: block;
-  margin-left: 400px;
+  margin-left:400px;
   
   transition: background-color 0.3s ease;
 }
