@@ -15,13 +15,13 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     const { firstname, lastname, dob, email, phone, gender, password, address } = req.body;
     bcrypt.hash(password, 10, (err, hashedPassword) => {
-        if (err) return res.status(400).send({ error: err.message });
+        if (err) return res.status(500).send({ error: "Error hashing password" });
 
         db.query(
             "INSERT INTO register (firstname, lastname, dob, email, phone, gender, password, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
             [firstname, lastname, dob, email, phone, gender, hashedPassword, address],
             (err) => {
-                if (err) return res.status(400).send({ error: err.message });
+                if (err) return res.status(500).send({ error:"Databse Error" });
                 res.send("✅ User registered successfully!");
             }
         );
@@ -79,3 +79,4 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
+ 
