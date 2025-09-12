@@ -29,21 +29,22 @@
 
   <div class="container">
     <h3 class="title">Hello User!</h3>
-    <form class="login-form" action="/login" method="POST">
+    <form class="login-form" action="http://localhost:8000/login" method="POST">
 
-        <input type="email" placeholder="Email" required />
+        <input type="email" name="email" placeholder="Email" required />
         <br>
         <br>
-        <input type="password" placeholder="Password" required />
+        <input type="password" name="password"placeholder="Password" required />
 
-
+        <div class="click">
+          <button type="submit" class="btn">Login</button>
+          <p class="register-link">Not yet Registered? <a href="Register.html">click here!</a></p>
+          <p class="message"></p>
+        </div>
+      
 </form>
 </div>
- <div class="click">
-    <button type="submit" class="btn">Login</button>
-    <p class="register-link">Not yet Registered? <a href="Register.html">click here!</a></p>
-  </div>
-
+ 
    
 
 
