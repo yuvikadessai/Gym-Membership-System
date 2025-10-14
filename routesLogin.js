@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const db = require("./db");
 const router = express.Router();
+const session = require("express-session");
 
 // ---------------- LOGIN ----------------
 
@@ -26,6 +27,12 @@ router.post("/", (req, res) => {
         bcrypt.compare(password, user.password, (err, isMatch) => {
             if (err) return res.status(500).json({ error: "Error comparing passwords" });
             if (!isMatch) return res.status(401).json({ error: "Invalid password" });
+
+            req.session.user = {
+                id: user.if,
+                email: user.email,
+                full_name: user.full_name
+            };
 
             const insertLogin =`INSERT INTO login (email,password, login_time) VALUES (?,?, NOW())
             ON DUPLICATE KEY UPDATE login_time = NOW()`;
@@ -61,5 +68,15 @@ router.delete("/:id", (req, res) => {
         res.json({ message: "Login record deleted successfully" });
     });
 });
+
+function isAuthenticated(req, res, next){
+    if(req.session.user){
+        return next();
+    }
+    else{
+        res.status(401).json({error: "You must login first"});
+    }
+}
+
 
 module.exports = router;
