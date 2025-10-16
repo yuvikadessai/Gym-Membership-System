@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FitHUB - Payment</title>
-  <link rel="stylesheet" href="Register.css">
+  <link rel="stylesheet" href="payment.css">
 </head>
 <body>
 
@@ -30,7 +30,7 @@
   <div class="container">
     <h3 class="title">Complete Your Payment</h3>
 
-    <form class="payment-form" action="http://localhost:8000/make-payment" method="POST">
+    <form class="payment-form" id="paymentForm" action="http://localhost:8000/payment" method="POST">
       <div class="form-group">
         <label for="plan_name">Select Your Plan:</label>
         <select name="plan_name" id="plan_name" required>
@@ -64,7 +64,7 @@
       </div>
 
       <div class="click">
-        <button type="submit" class="btn">Make Payment</button>
+        <button type="submit" id="payBtn" class="btn">Make Payment</button>
         <br>
         <p class="login-link">Want to change plan? <a href="plans.html">Go Back</a></p>
       </div>
@@ -101,6 +101,5 @@
     <hr />
     <p class="copyright">© 2025 FitHub Gym. All rights reserved.</p>
   </footer>
-
 </body>
 </html>
