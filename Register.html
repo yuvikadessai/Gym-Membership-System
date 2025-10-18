@@ -1,90 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FitHUB</title>
-  <link rel="stylesheet" href="Register.css">
-</head>
-<body>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>   
+  <meta charset="UTF-8">   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <title>FitHUB</title>   
+  <link rel="stylesheet" href="Register.css"> 
+</head> 
 
-  <header>
-    <nav class="navbar">
-      <div class="logo">
-        <img src="fithublogo.png" width="130">
-      </div>
-      <div class="navlinks">
-        <ul>
-        <li><a href="homepage.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="plans.html">Plans</a></li>
-        <li class="name">FitHUB</li>
-        <li><a href="trainers.html">Trainers</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+<body>   
+  <header>     
+    <nav class="navbar">       
+      <div class="logo">         
+        <img src="fithublogo.png" width="130">       
+      </div>       
+      <div class="navlinks">         
+        <ul>         
+          <li><a href="homepage.html">Home</a></li>         
+          <li><a href="about.html">About</a></li>         
+          <li><a href="plans.html">Plans</a></li>         
+          <li class="name">FitHUB</li>         
+          <li><a href="trainers.html">Trainers</a></li>         
+          <li><a href="contact.html">Contact</a></li>         
+          <li><a href="gallery.html">Gallery</a></li>         
+        </ul>       
+      </div>     
+    </nav>   
+  </header>    
 
-  <div class="container">
-    <h3 class="title">Register Now</h3>
-   
-    <form class="register-form" action="http://localhost:8000/register" method="POST">
-      <div class="form-group">
-        <input type="text" name="firstname" placeholder="First Name" required />
-        <input type="text" name="lastname" placeholder="Last Name" required />
-        <input type="date"name="dob" placeholder="DOB" required />
-      </div>
-      <div class="form-group">
-        <input type="email" name="email"placeholder="Email" required />
-        <input type="tel" name="phone" placeholder="Phone Number" required />
-        <input type="text" name="gender" placeholder="Gender" required />
-      </div>
-      <div class="form-group">
-        <input type="password" name="password" placeholder="Password" required />
-        <input type="text" name="address" placeholder="Address" required />
-      </div>
-      <div class="click">
-        <button type="submit" class="btn">Sign Up</button>
-        <br>
-        <p class="login-link">Already Registered? <a href="login.html">Login</a></p>
-    </div>
-    </form>
-  </div>
-  
-  
-    <!-- ✅ Footer Section -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-about">
-                <h3>FitHub Gym</h3>
-                <p>Your fitness journey begins here. Transform your body with our expert trainers, flexible plans, and 24/7 access.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html">Login/Register</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Contact Us</h4>
-                <p>Email: support@fithub.com</p>
-                <p>Phone: ‪+91 98765 43210‬</p>
-                <div class="socials">
-                  <a href="#">Instagram</a> |
-                  <a href="#">Facebook</a> |
-                  <a href="#">Twitter</a>
-                </div>
-            </div>
-        </div>
-        <hr />
-        <p class="copyright">© 2025 FitHub Gym. All rights reserved.</p>
-    </footer>
+  <div class="container">     
+    <h3 class="title">Register Now</h3>         
+    <form class="register-form" action="http://localhost:8000/register" method="POST">       
+      <div class="form-group">         
+        <input type="text" name="firstname" placeholder="First Name" required />         
+        <input type="text" name="lastname" placeholder="Last Name" required />         
+        <input type="date" name="dob" placeholder="DOB" required />       
+      </div>       
+      <div class="form-group">         
+        <input type="email" name="email" placeholder="Email" required />         
+        <input type="tel" name="phone" placeholder="Phone Number" required />         
+        <input type="text" name="gender" placeholder="Gender" required />       
+      </div>       
+      <div class="form-group">         
+        <input type="password" name="password" placeholder="Password" required />         
+        <input type="text" name="address" placeholder="Address" required />       
+      </div>       
+      <div class="click">         
+        <button type="submit" class="btn">Sign Up</button>         
+        <br>         
+        <p class="login-link">Already Registered? <a href="login.html">Login</a></p>     
+      </div>     
+    </form>   
+  </div>           
 
+  <footer class="footer">         
+    <div class="footer-container">             
+      <div class="footer-about">                 
+        <h3>FitHub Gym</h3>                 
+        <p>Your fitness journey begins here. Transform your body with our expert trainers, flexible plans, and 24/7 access.</p>             
+      </div>             
+      <div class="footer-links">                 
+        <h4>Quick Links</h4>                 
+        <ul>                     
+          <li><a href="home.html">Home</a></li>                     
+          <li><a href="about.html">About Us</a></li>                     
+          <li><a href="contact.html">Contact</a></li>                     
+          <li><a href="login.html">Login/Register</a></li>                 
+        </ul>             
+      </div>             
+      <div class="footer-contact">                 
+        <h4>Contact Us</h4>                 
+        <p>Email: support@fithub.com</p>                 
+        <p>Phone: ‪+91 98765 43210‬</p>                 
+        <div class="socials">                   
+          <a href="#">Instagram</a> |                   
+          <a href="#">Facebook</a> |                   
+          <a href="#">Twitter</a>                 
+        </div>             
+      </div>         
+    </div>         
+    <hr />         
+    <p class="copyright">© 2025 FitHub Gym. All rights reserved.</p>     
+  </footer>   
 
-</body>
+  <!-- ✅ JavaScript Validation -->
+  <script>
+    document.querySelector(".register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const password = form.password.value.trim();
+      const gender = form.gender.value.trim().toLowerCase();
+
+      // Email validation
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        e.preventDefault();
+        return;
+      }
+
+      // Phone validation (10 digits)
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(phone)) {
+        alert("Phone number must be 10 digits.");
+        e.preventDefault();
+        return;
+      }
+
+      // Password length
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        e.preventDefault();
+        return;
+      }
+
+      // Gender validation
+      if (!(gender === "male" || gender === "female" || gender === "other")) {
+        alert("Gender must be Male, Female, or Other.");
+        e.preventDefault();
+        return;
+      }
+
+      // Success message (optional)
+      alert("Registration successful! Redirecting...");
+      window.location.href="login.html";
+    });
+  </script>
+
+</body> 
 </html>
