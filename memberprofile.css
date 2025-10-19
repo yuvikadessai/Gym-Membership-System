@@ -1,0 +1,208 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+   
+  color: #a8ff98;
+
+  
+  background-image: 
+    linear-gradient(#5b5a5aea, #00000076),
+    url("https://img.freepik.com/premium-photo/soft-blurred-gym-background-active-fitness-equipment-strong-workout-mood_217468-30272.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #20232a;
+  /* color: #ff0a0a43; */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar img{
+  margin-left: 50px;
+}
+
+.sidebar h2 {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #a8ff98;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #ccc;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #a8ff98;
+  color: #20232a;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+header p {
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Profile Photo */
+.profile-photo {
+  text-align: center;
+}
+
+.profile-photo img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #a8ff98;
+  margin-bottom: 10px;
+}
+
+.upload-btn {
+  background-color: #a8ff98;
+  border: none;
+  color: #20232a;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background-color: #a8ff98;
+}
+
+/* Form Styling */
+.profile-form {
+  background: #0000001e;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgb(0, 0, 0);
+  flex: 1;
+  min-width: 300px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  height: 70px;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.save-btn, .cancel-btn {
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.save-btn {
+  background-color: #a8ff98;
+  color: #20232a;
+}
+
+.save-btn:hover {
+  background-color: #a8ff98;
+}
+
+.cancel-btn {
+  background-color: #a8ff98;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #a8ff98;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .profile-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-form {
+    width: 100%;
+  }
+}

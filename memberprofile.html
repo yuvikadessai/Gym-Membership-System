@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitHub | My Profile</title>
+  <link rel="stylesheet" href="memberprofile.css">
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+       <img src="fithublogo.png" width="100">
+      <h2>FitHub</h2>
+      <ul>
+        <li><a href="memberdashboard.html">Dashboard</a></li>
+        <li><a href="memberprofile.html" class="active">My Profile</a></li>
+        <li><a href="#">Workout Plan</a></li>
+        <li><a href="#">Payments</a></li>
+        <li><a href="#">Trainer</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>My Profile</h1>
+        <p>Manage and update your personal information</p>
+      </header>
+
+      <section class="profile-section">
+        <!-- Profile Photo -->
+        <div class="profile-photo">
+          <img src="logo.png" >
+          <button class="upload-btn">Change Photo</button>
+        </div>
+
+        <!-- Profile Details Form -->
+        <form class="profile-form">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" value="Rosanne Rebelo">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" value="rosanne@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" value="+91 9876543210">
+          </div>
+
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" value="2004-07-15">
+          </div>
+
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender">
+              <option selected>Female</option>
+              <option>Male</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address">Margao, Goa</textarea>
+          </div>
+
+          <div class="form-buttons">
+            <button type="submit" class="save-btn">Save Changes</button>
+            <button type="reset" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
