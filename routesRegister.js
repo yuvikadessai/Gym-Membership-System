@@ -12,22 +12,53 @@ router.get("/", (req, res) => {
 });
 
 // Register new user
+r// Register new user
 router.post("/", (req, res) => {
     const { firstname, lastname, dob, email, phone, gender, password, address } = req.body;
+  
+    // Hash the password
     bcrypt.hash(password, 10, (err, hashedPassword) => {
-        if (err) return res.status(500).send({ error: "Error hashing password" });
-
-        db.query(
-            "INSERT INTO register (firstname, lastname, dob, email, phone, gender, password, address) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
-            [firstname, lastname, dob, email, phone, gender, hashedPassword, address],
-            (err) => {
-                if (err) return res.status(500).send({ error:"Databse Error" });
-                res.send("✅ User registered successfully!");
+      if (err) return res.status(500).send({ error: "Error hashing password" });
+  
+      // Step 1: Insert new user WITHOUT member_id
+      db.query(
+        "INSERT INTO register (firstname, lastname, dob, email, phone, gender, password, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        [firstname, lastname, dob, email, phone, gender, hashedPassword, address],
+        (err, result) => {
+          if (err) return res.status(500).send({ error: "Database Error" });
+  
+          console.log("Inserted ID:", result.insertId); // ✅ Debugging
+  
+          if (!result.insertId) {
+            return res.status(500).send({ error: "Failed to get insert ID" });
+          }
+  
+          // Step 2: Generate member ID
+          const memberId = `FIT${String(result.insertId).padStart(3, "0")}`;
+  
+          // Step 3: Update the same row with member_id
+          db.query(
+            "UPDATE register SET member_id = ? WHERE id = ?",
+            [memberId, result.insertId],
+            (updateErr, updateResult) => {
+              if (updateErr) return res.status(500).send({ error: "Error adding member ID" });
+  
+              console.log("Update result:", updateResult); // ✅ Debugging
+  
+              if (updateResult.affectedRows === 0) {
+                return res.status(500).send({ error: "Failed to update member ID" });
+              }
+  
+              // Step 4: Success response
+              res.send(`✅ User registered successfully! Member ID: ${memberId}`);
             }
-        );
+          );
+        }
+      );
     });
-});
-
+  });
+  
+  
 // Get registered user by ID
 router.get("/:id", (req, res) => {
     const { id } = req.params;
