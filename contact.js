@@ -27,3 +27,4 @@ document.querySelector(".contact-form").addEventListener("submit", async functio
         alert("Server error. Please try again later.");
     }
 });
+
