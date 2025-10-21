@@ -21,11 +21,20 @@ router.post("/", (req, res) => {
             if (!isMatch) return res.status(401).json({ error: "Invalid password" });
 
             req.session.user = {
-                id:user.id,
-                member_id : user.member_id,
-                name:`${user.firstName} ${lastName}`,
-                email:user.email,
+                id: user.id,
+                member_id: user.member_id, 
+                name:`${user.firstName} ${user.lastName}`,// ✅ must not be null
+                //firstName: user.firstName,
+                //lastName: user.lastName,
+               email: user.email,
+               phone: user.phone,
+                dob: user.dob,
+               gender: user.gender,
+             address: user.address
             };
+
+            console.log("Session after login:", req.session);
+
 
             // ✅ Login successful, send user info
             res.json({
@@ -33,6 +42,13 @@ router.post("/", (req, res) => {
                 user: req.session.user
             });
         });
+    });
+});
+
+router.get("/test-session", (req, res) => {
+    res.json({
+        sessionExists: !!req.session.user,
+        sessionData: req.session.user || null
     });
 });
 
