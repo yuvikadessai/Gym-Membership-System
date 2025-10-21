@@ -12,7 +12,6 @@ router.get("/", (req, res) => {
 });
 
 // Register new user
-r// Register new user
 router.post("/", (req, res) => {
     const { firstname, lastname, dob, email, phone, gender, password, address } = req.body;
   
@@ -25,6 +24,7 @@ router.post("/", (req, res) => {
         "INSERT INTO register (firstname, lastname, dob, email, phone, gender, password, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
         [firstname, lastname, dob, email, phone, gender, hashedPassword, address],
         (err, result) => {
+            console.error("Database Error:", err); 
           if (err) return res.status(500).send({ error: "Database Error" });
   
           console.log("Inserted ID:", result.insertId); // ✅ Debugging
@@ -78,7 +78,7 @@ router.put("/:id", (req, res) => {
         bcrypt.hash(password, 10, (err, hashedPassword) => {
             if (err) return res.status(500).send("Error hashing password");
 
-            const sql = `UPDATE register 
+            const sql = `UPDATE register
                          SET firstname=?, lastname=?, dob=?, email=?, phone=?, gender=?, password=?, address=? 
                          WHERE id=?`;
 
@@ -88,7 +88,7 @@ router.put("/:id", (req, res) => {
             });
         });
     } else {
-        const sql = `UPDATE register 
+        const sql = `UPDATE register
                      SET firstname=?, lastname=?, dob=?, email=?, phone=?, gender=?, address=? 
                      WHERE id=?`;
 
