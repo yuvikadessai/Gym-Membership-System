@@ -9,6 +9,7 @@ document.querySelector(".login-form").addEventListener("submit", async function(
         const res = await fetch("http://localhost:8000/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
+            credentials: "include",
             body: JSON.stringify({ email, password })
         });
 
@@ -18,7 +19,7 @@ document.querySelector(".login-form").addEventListener("submit", async function(
             alert(data.error || "Login failed");
         } else {
             // ✅ Login successful, redirect to plans.html
-            window.location.href = "plans.html";
+            window.location.href = "memberprofile.html";
         }
     } catch (err) {
         console.error(err);
