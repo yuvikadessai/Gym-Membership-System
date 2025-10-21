@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -21,13 +21,13 @@ body {
 .dashboard-container {
   display: flex;
   min-height: 100vh;
-}
+} */
 
-/* Sidebar */
+/* Sidebar 
 .sidebar {
   width: 250px;
   background-color: #20232a;
-  /* color: #ff0a0a43; */
+  /* color: #ff0a0a43; 
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -64,8 +64,9 @@ body {
 .sidebar ul li a:hover,
 .sidebar ul li a.active {
   background-color: #a8ff98;
-  color: #20232a;
+  color: #f4f7ff79;
 }
+  */
 
 /* Main Content */
 .main-content {
@@ -206,3 +207,4 @@ textarea {
     width: 100%;
   }
 }
+
