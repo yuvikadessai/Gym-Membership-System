@@ -7,6 +7,8 @@ const routerLogin = require("./routesLogin");
 const routerRegister = require("./routesRegister");
 const routerContact = require("./routesContact"); 
 const routerPayment = require("./routesPayment");
+const routerMember = require("./routesMember");
+const routerMemberprofile = require("./routesMemberprofile")
 
 
 dotenv.config();
@@ -14,20 +16,35 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(
-    {
-        origin:"http://localhost:8000",
-        credentials:true
-    }
-));
+const allowedOrigins = ["http://localhost:5501"];
+app.use(cors({
+    origin: function(origin, callback){
+        // allow requests with no origin (like Postman)
+        if(!origin) return callback(null, true);
+        if(allowedOrigins.indexOf(origin) === -1){
+            var msg = 'CORS policy: This origin is not allowed';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true
+}));
 
+
+
+//"http://127.0.0.1:5501",
 //sessions
 app.use(
     session({
         secret:process.env.SECRET_KEY,
         resave:false,
         saveUninitialized:false,
-        cookie:{secure:false}
+        cookie:{
+            maxAge: 3600000,
+            secure:false,
+            httpOnly: true,
+            sameSite: "lax"
+        }
     })
 );
 
@@ -35,7 +52,10 @@ app.use(
 app.use("/login", routerLogin);
 app.use("/register", routerRegister);
 app.use("/contact", routerContact)
-app.use("/", routerPayment); ;
+app.use("/", routerPayment);
+app.use("/details", routerMember);
+app.use("/update-profile",routerMemberprofile);
+
 
 const PORT = 8000;
 app.listen(PORT, () => {
