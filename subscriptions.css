@@ -1,0 +1,134 @@
+.plan-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 40px 20px;
+  background-image: 
+    linear-gradient(#5b5a5aea, #00000076),
+    url("https://img.freepik.com/premium-photo/soft-blurred-gym-background-active-fitness-equipment-strong-workout-mood_217468-30272.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 20px;
+}
+
+
+/* 
+.sidebar h2 {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #a8ff98;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #ccc;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #a8ff98;
+  color: #20232a;
+} */
+
+/* Main Content */
+/* .main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+header p {
+  color: #ffffff;
+  margin-bottom: 30px;
+} */
+
+
+
+/* Individual Plan Card */
+.plan-card {
+  background-color: #ffffff10; /* translucent white */
+  border: 1px solid #a8ff98;
+  border-radius: 16px;
+  padding: 25px;
+  width: 300px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px #a8ff98;
+}
+
+.plan-card h3 {
+  font-size: 24px;
+  color: #edf8eb;
+  text-shadow: 0 0 10px #a8ff98;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.plan-card p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.plan-card ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.plan-card li {
+  margin-bottom: 6px;
+  list-style-type: disc;
+}
+
+.plan-card button{
+  background-color:#5ee45e ;
+  color:#000000;
+  border:none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor:pointer;
+  transition:background-color 0.2s ease;
+  
+}
+
+.plan-card button:hover {
+  background-color: #1e860c;
+}
+
+/* Responsive - Stack Cards Vertically on Small Screens */
+@media (max-width: 900px) {
+  .plan-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .plan-card {
+    width: 90%;
+  }
+}
+
