@@ -1,10 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const session = require("express-session");
+
 const routerLogin = require("./routesLogin");
 const routerRegister = require("./routesRegister");
 const routerContact = require("./routesContact"); 
-const session = require("express-session");
 const routerPayment = require("./routesPayment");
 
 
@@ -13,7 +14,22 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(
+    {
+        origin:"http://localhost:8000",
+        credentials:true
+    }
+));
+
+//sessions
+app.use(
+    session({
+        secret:process.env.SECRET_KEY,
+        resave:false,
+        saveUninitialized:false,
+        cookie:{secure:false}
+    })
+);
 
 // Mount routers
 app.use("/login", routerLogin);
