@@ -20,14 +20,17 @@ router.post("/", (req, res) => {
             if (err) return res.status(500).json({ error: "Error comparing passwords" });
             if (!isMatch) return res.status(401).json({ error: "Invalid password" });
 
+            req.session.user = {
+                id:user.id,
+                member_id : user.member_id,
+                name:`${user.firstName} ${lastName}`,
+                email:user.email,
+            };
+
             // ✅ Login successful, send user info
             res.json({
                 message: "✅ Login successful",
-                user: {
-                    id: user.id,
-                    email: user.email,
-                    name: `${user.firstname} ${user.lastname}`
-                }
+                user: req.session.user
             });
         });
     });
