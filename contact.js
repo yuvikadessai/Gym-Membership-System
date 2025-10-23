@@ -20,7 +20,7 @@ document.querySelector(".contact-form").addEventListener("submit", async functio
             alert(data.error || "Something went wrong!");
         } else {
             alert("✅ Message sent successfully!");
-            window.location.href = "plans.html"; // redirect after clicking OK
+            window.location.href = "homepage.html"; // redirect after clicking OK
         }
     } catch (err) {
         console.error(err);
