@@ -19,7 +19,7 @@ document.querySelector(".login-form").addEventListener("submit", async function(
             alert(data.error || "Login failed");
         } else {
             // ✅ Login successful, redirect to plans.html
-            window.location.href = "memberprofile.html";
+            window.location.href = "memberdashboard.html";
         }
     } catch (err) {
         console.error(err);
