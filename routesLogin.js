@@ -35,6 +35,7 @@ router.post("/", (req, res) => {
 
             console.log("Session after login:", req.session);
 
+            req.session.member_id = user.member_id;
 
             // ✅ Login successful, send user info
             res.json({
