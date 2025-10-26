@@ -8,7 +8,8 @@ const routerRegister = require("./routesRegister");
 const routerContact = require("./routesContact"); 
 const routerPayment = require("./routesPayment");
 const routerMember = require("./routesMember");
-const routerMemberprofile = require("./routesMemberprofile")
+const routerMemberprofile = require("./routesMemberprofile");
+const routerDashboard = require("./routesDashboard");
 
 
 dotenv.config();
@@ -52,9 +53,10 @@ app.use(
 app.use("/login", routerLogin);
 app.use("/register", routerRegister);
 app.use("/contact", routerContact)
-app.use("/", routerPayment);
+app.use("/pay", routerPayment);
 app.use("/details", routerMember);
 app.use("/update-profile",routerMemberprofile);
+app.use("/dashboard", routerDashboard);
 
 
 const PORT = 8000;
