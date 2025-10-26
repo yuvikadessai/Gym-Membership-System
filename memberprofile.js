@@ -1,33 +1,40 @@
 window.addEventListener("DOMContentLoaded", () => {
-    fetch("http://localhost:8000/details", {
-        method: "GET",
-        credentials: "include" // important for sessions
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.error){
-            alert(data.error);
-            return;
-        }
+  fetch("http://localhost:8000/details", {
+    method: "GET",
+    credentials: "include"
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.error){
+      alert(data.error);
+      return;
+    }
 
-        const user = data;
-        document.getElementById("fullName").value = `${user.firstName} ${user.lastName}`;
-        document.getElementById("email").value = user.email;
-        document.getElementById("phone").value = user.phone;
+    const user = data;
+    
+    // Set form values
+    document.getElementById("fullName").value = `${user.firstName} ${user.lastName}`;
+    document.getElementById("email").value = user.email;
+    document.getElementById("phone").value = user.phone;
+    document.getElementById("gender").value = user.gender;
+    document.getElementById("address").value = user.address;
+    
+    // ✅ Fix date format: Convert ISO date to YYYY-MM-DD
+    if (user.dob) {
+      const date = new Date(user.dob);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
+      document.getElementById("dob").value = formattedDate;
+    }
+  })
+  .catch(err => console.log(err));
 
-        document.getElementById("dob").value = user.dob;
-        const [year, month, day] = user.dob.split("-");
-        document.getElementById("dob").innerText= `${year}-${month}-${day}`;
-
-        document.getElementById("gender").value = user.gender;
-        document.getElementById("address").value = user.address;
-    })
-    .catch(err => console.log(err));
-
-
-    const form = document.querySelector(".profile-form");
+  // Form submission handler
+  const form = document.querySelector(".profile-form");
   form.addEventListener("submit", (e) => {
-    e.preventDefault(); // prevent page reload
+    e.preventDefault();
 
     // Collect updated values
     const updatedUser = {
@@ -63,5 +70,4 @@ window.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error(err));
   });
-
-   });
+});
