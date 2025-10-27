@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitHub Gym - Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Background */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(to left, rgb(111, 108, 108), rgb(0, 0, 0));
+      padding: 20px;
+    }
+
+    .login-wrapper {
+      background: rgba(30, 30, 30, 0.95);
+      border: 2px solid #97d17f;
+      border-radius: 15px;
+      padding: 40px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    .login-header h1 {
+      color: #97d17f;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(151, 209, 127, 0.5);
+    }
+
+    .login-header p {
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    /* Role selection */
+    .role-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .role-card {
+      padding: 25px;
+      border: 2px solid #555;
+      background-color: rgba(50, 50, 50, 0.5);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .role-card:hover {
+      border-color: #97d17f;
+      background-color: rgba(151, 209, 127, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .role-card h3 {
+      color: #97d17f;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    .role-card p {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .back-link {
+      margin-top: 25px;
+    }
+
+    .back-link a {
+      color: #97d17f;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .back-link a:hover {
+      color: #7bb962;
+      text-decoration: underline;
+    }
+
+    /* Navbar (using your preferred style) */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.23);
+      margin: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 10px;
+      position: relative;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    nav li {
+      display: inline;
+      margin-right: 15px;
+    }
+
+    .name {
+      color: #ffffff;
+      font-size: 25px;
+      font-family: fantasy;
+      text-shadow: 0 0 10px #a8ff98;
+    }
+
+    nav a {
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    nav a:hover {
+      color: #97d17f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="fithublogo.png" width="70" alt="FitHub Logo" />
+      </div>
+      <div class="navlinks">
+        <ul>
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="plans.html">Plans</a></li>
+          <li class="name">FitHUB</li>
+          <li><a href="trainers.html">Trainers</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="login-container">
+    <div class="login-wrapper">
+      <div class="login-header">
+        <h1>FitHub</h1>
+        <p>Select your profile to continue</p>
+      </div>
+
+      <div class="role-grid">
+        <div class="role-card" onclick="window.location.href='login.html'">
+          <h3>Member</h3>
+          <p>Access your fitness journey and track progress</p>
+        </div>
+        <div class="role-card" onclick="window.location.href='adminlogin.html'">
+          <h3>Admin</h3>
+          <p>Manage gym operations and members</p>
+        </div>
+      </div>
+
+      <div class="back-link">
+        <a href="homepage.html">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
