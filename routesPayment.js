@@ -3,6 +3,9 @@ const router = express.Router();
 const db = require("./db");
 const { v4: uuidv4 } = require("uuid");
 const nodemailer = require("nodemailer");
+const dotenv = require("dotenv");
+dotenv.config();
+
 
 router.post("/", (req, res) => {
   const {
@@ -74,7 +77,7 @@ router.post("/", (req, res) => {
 
             // ✅ 4️⃣ Fetch member email + name for confirmation mail
             db.query(
-              "SELECT name, email FROM register WHERE member_id = ?",
+              "SELECT firstName, email FROM register WHERE member_id = ?",
               [member_id],
               async (emailErr, memberResult) => {
                 if (emailErr || memberResult.length === 0) {
@@ -93,6 +96,7 @@ router.post("/", (req, res) => {
                       pass: process.env.EMAIL_PASS,
                     },
                   });
+
 
                   const mailOptions = {
                     from: process.env.EMAIL_USER,
