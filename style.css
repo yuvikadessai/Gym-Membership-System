@@ -26,23 +26,24 @@ html {
     display: inline;
   
   }
+  
   .name{
       color: #ffffff;
     font-size: 25px;
     font-family:fantasy;
     text-shadow: 0 0 10px #a8ff98;
   }
-  nav a{
+ nav a{
     /* display: block; */
     padding: 10px 15px;
     text-decoration: none;
     color: #ffffff;
   }
-  
+
   nav a:hover{
     color: #97d17f;
   }
-  
+
   body {
      background-image: linear-gradient(to left,rgb(111, 108, 108),rgb(0, 0, 0));
     min-height: 100vh; /* Ensures the gradient covers the full viewport height */
