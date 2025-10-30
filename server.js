@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const session = require("express-session");
 
+// Import all routers
 const routerLogin = require("./routesLogin");
 const routerRegister = require("./routesRegister");
 const routerContact = require("./routesContact"); 
@@ -12,17 +13,20 @@ const routerMemberprofile = require("./routesMemberprofile");
 const routerDashboard = require("./routesDashboard");
 const routerAdminRegister = require("./routesAdminRegister");
 const routerAdminLogin = require("./routesAdminLogin");
-
+const routerAccessMembers = require("./routesAccessMembers");
+const routerPaymentDashboard = require("./routesPaymentDashboard");
+const routerTrainers = require("./routesTrainers");
 
 dotenv.config();
 const app = express();
 
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 const allowedOrigins = ["http://localhost:5501"];
 app.use(cors({
     origin: function(origin, callback){
-        // allow requests with no origin (like Postman)
         if(!origin) return callback(null, true);
         if(allowedOrigins.indexOf(origin) === -1){
             var msg = 'CORS policy: This origin is not allowed';
@@ -33,18 +37,15 @@ app.use(cors({
     credentials: true
 }));
 
-
-
-//"http://127.0.0.1:5501",
-//sessions
+// Sessions
 app.use(
     session({
-        secret:process.env.SECRET_KEY,
-        resave:false,
-        saveUninitialized:false,
-        cookie:{
+        secret: process.env.SECRET_KEY || "your-secret-key",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
             maxAge: 3600000,
-            secure:false,
+            secure: false,
             httpOnly: true,
             sameSite: "lax"
         }
@@ -54,16 +55,26 @@ app.use(
 // Mount routers
 app.use("/login", routerLogin);
 app.use("/register", routerRegister);
-app.use("/contact", routerContact)
+app.use("/contact", routerContact);
 app.use("/pay", routerPayment);
 app.use("/details", routerMember);
-app.use("/update-profile",routerMemberprofile);
+app.use("/update-profile", routerMemberprofile);
 app.use("/dashboard", routerDashboard);
 app.use("/adminRegister", routerAdminRegister);
 app.use("/adminLogin", routerAdminLogin);
+app.use("/membersaccess", routerAccessMembers);
+app.use("/paymentdash", routerPaymentDashboard);
+app.use("/trainers", routerTrainers);
 
+console.log("✅ All routes mounted");
+
+// Test route to verify server is working
+app.get("/test", (req, res) => {
+    res.json({ message: "Server is working!" });
+});
 
 const PORT = 8000;
 app.listen(PORT, () => {
-    console.log(`Server running on PORT ${PORT}`);
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+    console.log(`📍 Test the trainers endpoint: http://localhost:${PORT}/trainers`);
 });
