@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitHub | Admin Dashboard</title>
+  <link rel="stylesheet" href="admindashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="fithublogo.png" width="100" alt="FitHub Logo">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="member.html">Members</a></li>
+        <li><a href="trainers.html">Trainers</a></li>
+        <li><a href="paydashboard.html">Payments</a></li>
+        <li><a href="assigntrainer.html">Assign Trainers</a></li>
+        <li><a href="adminsubscriptions.html">Add Subscriptions</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>Welcome, <span class="admin-name">Admin</span></h1>
+        <p>Manage FitHub performance & analytics ⚙️</p>
+      </header>
+
+      <section class="cards">
+        <!-- Total Members -->
+        <div class="card">
+          <h3>Total Members Joined</h3>
+          <p><strong>Count:</strong> <span class="total-members">Loading...</span></p>
+        </div>
+
+        <!-- Total Trainers -->
+        <div class="card">
+          <h3>Total Trainers</h3>
+          <p><strong>Count:</strong> <span class="total-trainers">Loading...</span></p>
+        </div>
+
+        <!-- Male to Female Ratio -->
+        <div class="card">
+          <h3>Gender Ratio</h3>
+          <p><strong>Male:</strong> <span class="male-count">Loading...</span></p>
+          <p><strong>Female:</strong> <span class="female-count">Loading...</span></p>
+          <div class="ratio-bar">
+            <div class="male-bar"></div>
+            <div class="female-bar"></div>
+          </div>
+        </div>
+
+        <!-- Summary / Insights -->
+        <div class="card">
+          <h3>Summary</h3>
+          <p><strong>Active Memberships:</strong> <span class="active-members">Loading...</span></p>
+          <p><strong>Expiring Soon:</strong> <span class="expiring-members">Loading...</span></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="admindashboard.js"></script>
+</body>
+</html>
