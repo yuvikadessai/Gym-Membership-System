@@ -14,7 +14,7 @@
       <img src="fithublogo.png" width="100" alt="FitHub Logo">
       <h2>Admin Panel</h2>
       <ul>
-        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="admindashboard.html" class="active">Dashboard</a></li>
         <li><a href="member.html">Members</a></li>
         <li><a href="trainers.html">Trainers</a></li>
         <li><a href="paydashboard.html">Payments</a></li>
@@ -31,40 +31,55 @@
         <p>Manage FitHub performance & analytics ⚙️</p>
       </header>
 
-      <section class="cards">
-        <!-- Total Members -->
-        <div class="card">
-          <h3>Total Members Joined</h3>
-          <p><strong>Count:</strong> <span class="total-members">Loading...</span></p>
+      <!-- Stats Cards -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <h3>Total Members</h3>
+            <p class="stat-value total-registrations">Loading...</p>
+          </div>
         </div>
+      </section>
 
-        <!-- Total Trainers -->
-        <div class="card">
-          <h3>Total Trainers</h3>
-          <p><strong>Count:</strong> <span class="total-trainers">Loading...</span></p>
-        </div>
-
-        <!-- Male to Female Ratio -->
-        <div class="card">
-          <h3>Gender Ratio</h3>
-          <p><strong>Male:</strong> <span class="male-count">Loading...</span></p>
-          <p><strong>Female:</strong> <span class="female-count">Loading...</span></p>
-          <div class="ratio-bar">
-            <div class="male-bar"></div>
-            <div class="female-bar"></div>
+      <!-- Charts Section -->
+      <section class="charts-grid">
+        <!-- Monthly Members Joined -->
+        <div class="chart-card">
+          <h3>📊 Monthly Members Joined</h3>
+          <div class="chart-wrapper">
+            <canvas id="membersChart"></canvas>
           </div>
         </div>
 
-        <!-- Summary / Insights -->
-        <div class="card">
-          <h3>Summary</h3>
-          <p><strong>Active Memberships:</strong> <span class="active-members">Loading...</span></p>
-          <p><strong>Expiring Soon:</strong> <span class="expiring-members">Loading...</span></p>
+        <!-- Gender Ratio -->
+        <div class="chart-card">
+          <h3>👫 Gender Ratio</h3>
+          <div class="chart-wrapper">
+            <canvas id="genderChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Payment Status -->
+        <div class="chart-card">
+          <h3>💳 Payment Status</h3>
+          <div class="chart-wrapper">
+            <canvas id="paymentChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Membership Status -->
+        <div class="chart-card">
+          <h3>📋 Membership Status</h3>
+          <div class="chart-wrapper">
+            <canvas id="membershipChart"></canvas>
+          </div>
         </div>
       </section>
+      
     </main>
   </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="admindashboard.js"></script>
 </body>
 </html>
