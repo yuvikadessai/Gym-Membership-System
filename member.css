@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-image: 
+    linear-gradient(#5b5a5aea, #00000076),
+    url("https://img.freepik.com/premium-photo/soft-blurred-gym-background-active-fitness-equipment-strong-workout-mood_217468-30272.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #0b0c0a;
+}
+
+/* Layout */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #0000006b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar img {
+  margin-left: 50px;
+}
+
+.sidebar h2 {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #a8ff98;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #ccc;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #a8ff98;
+  color: #20232a;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+header p {
+  color: #fffdfd;
+  margin-bottom: 30px;
+}
+
+/* Member Cards */
+.members-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.member-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-5px);
+}
+
+.member-card h3 {
+  color: #20232a;
+  margin-bottom: 10px;
+}
+
+.member-card p {
+  color: #555;
+  margin: 4px 0;
+}
+
+.member-card .status {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.status.active {
+  background-color: #22c55e;
+}
+
+.status.expired {
+  background-color: #ef4444;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+th {
+  background-color: #0f5132;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  font-weight: 600;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #e9f7ef;
+}
