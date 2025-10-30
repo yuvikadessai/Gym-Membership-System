@@ -17,6 +17,7 @@ const routerAccessMembers = require("./routesAccessMembers");
 const routerPaymentDashboard = require("./routesPaymentDashboard");
 const routerTrainers = require("./routesTrainers");
 const routerAssignTrainers = require("./routesAssignTrainers");
+const routerSubscriptions = require("./routesSubscriptions");
 
 dotenv.config();
 const app = express();
@@ -67,6 +68,7 @@ app.use("/membersaccess", routerAccessMembers);
 app.use("/paymentdash", routerPaymentDashboard);
 app.use("/trainers", routerTrainers);
 app.use("/assigntrainers", routerAssignTrainers);
+app.use("/subscriptions", routerSubscriptions);
 
 console.log("✅ All routes mounted");
 
