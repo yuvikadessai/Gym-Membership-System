@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitHub | Payments</title>
+  <link rel="stylesheet" href="member.css">
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="fithublogo.png" width="100" alt="FitHub Logo">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li><a href="admindashboard.html">Dashboard</a></li>
+        <li><a href="member.html">Members</a></li>
+        <li><a href="trainers.html">Trainers</a></li>
+        <li><a href="#" class="active">Payments</a></li>
+        <li><a href="assigntrainer.html">Assign Trainers</a></li>
+        <li><a href="adminsubscriptions.html">Add Subscriptions</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>Payments Overview</h1>
+        <p>Track all gym payments and plan subscriptions 💳</p>
+      </header>
+
+      <!-- Payment Table -->
+      <section class="payment-section">
+        <table class="payment-table">
+          <thead>
+            <tr>
+              <th>Member Name</th>
+              <th>Plan Name</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="paymentTableBody">
+            <!-- JS will fill rows -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="paydashboard.js"></script>
+</body>
+</html>
