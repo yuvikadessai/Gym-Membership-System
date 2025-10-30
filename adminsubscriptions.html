@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitHub | Manage Subscriptions</title>
+  <link rel="stylesheet" href="adminsubscriptions.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="fithublogo.png" width="100" alt="FitHub Logo">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li><a href="admindashboard.html">Dashboard</a></li>
+        <li><a href="member.html">Members</a></li>
+        <li><a href="trainers.html">Trainers</a></li>
+        <li><a href="paydashboard.html">Payments</a></li>
+        <li><a href="assigntrainer.html">Assign Trainers</a></li>
+        <li><a href="#"class="active">Add Subscriptions</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>Subscription Plans</h1>
+        <p>Manage membership plans and monitor active users 📊</p>
+      </header>
+
+      <div class="button-bar">
+        <button onclick="window.location.href='addplan.html'">➕ Add New Plan</button>
+      </div>
+
+      <section class="plan-container" id="planContainer">
+        <!-- Plans dynamically loaded here -->
+      </section>
+    </main>
+  </div>
+
+  <script src="adminsubscriptions.js"></script>
+</body>
+</html>
