@@ -1,51 +1,73 @@
-// Example Plan Data
-let plans = [
-  { name: "Strength Training", price: 1200, members: 12, description: "Build strength with guided workouts." },
-  { name: "Cardio & HIIT", price: 1000, members: 18, description: "Boost stamina with high-intensity training." },
-  { name: "Yoga & Flexibility", price: 900, members: 10, description: "Improve posture, flexibility, and peace." },
-  { name: "CrossFit Program", price: 1800, members: 6, description: "Challenge yourself with CrossFit workouts." },
-  { name: "Zumba & Dance Fitness", price: 800, members: 9, description: "Fun, dance-based fitness sessions." }
-];
-
-document.addEventListener("DOMContentLoaded", loadPlans);
-
-function loadPlans() {
+async function loadPlans() {
   const container = document.getElementById("planContainer");
-  container.innerHTML = "";
+  container.innerHTML = "<p>Loading plans...</p>";
 
-  plans.forEach((plan, index) => {
-    const card = document.createElement("div");
-    card.classList.add("plan-card");
+  try {
+    // Fetch all plans from backend (DB)
+    const res = await fetch("http://localhost:8000/subscriptions");
+    const plans = await res.json();
 
-    card.innerHTML = `
-      <h3>${plan.name}</h3>
-      <p><strong>Description:</strong> ${plan.description}</p>
-      <p><strong>Price:</strong> ₹${plan.price}/month</p>
-      <p><strong>Members Subscribed:</strong> ${plan.members}</p>
-      <button onclick="updatePlan(${index})">✏️ Update Plan</button>
-    `;
+    if (!plans.length) {
+      container.innerHTML = "<p>No plans added yet.</p>";
+      return;
+    }
 
-    container.appendChild(card);
-  });
-}
+    container.innerHTML = "";
+    plans.forEach((plan) => {
+      const card = document.createElement("div");
+      card.classList.add("plan-card");
 
-function updatePlan(index) {
-  const plan = plans[index];
-  const newName = prompt("Update Plan Name:", plan.name);
-  const newPrice = prompt("Update Price (₹):", plan.price);
-  const newDesc = prompt("Update Description:", plan.description);
+      card.innerHTML = `
+        <h3>${plan.type}</h3>
+        <p><strong>Description:</strong> ${plan.description || "No description provided"}</p>
+        <p><strong>Price:</strong> ₹${plan.price}/month</p>
+        <p><strong>Duration:</strong> ${plan.duration} month(s)</p>
+        <button onclick="updatePlan('${plan.type}', '${plan.description}', ${plan.price})">✏️ Update Plan</button>
+      `;
 
-  if (newName && newPrice && newDesc) {
-    plans[index] = { ...plan, name: newName, price: parseInt(newPrice), description: newDesc };
-    alert("Plan updated successfully!");
-    localStorage.setItem("gymPlans", JSON.stringify(plans)); // Save for frontend use
-    loadPlans();
+      container.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error loading plans:", error);
+    container.innerHTML = "<p>❌ Failed to load plans.</p>";
   }
 }
 
-// Load from local storage if available
-window.onload = () => {
-  const savedPlans = localStorage.getItem("gymPlans");
-  if (savedPlans) plans = JSON.parse(savedPlans);
-  loadPlans();
-};
+// ✅ Update Plan (name, price, and description)
+async function updatePlan(oldType, oldDesc, oldPrice) {
+  const newType = prompt("Enter new plan name:", oldType);
+  const newPrice = prompt("Enter new price:", oldPrice);
+  const newDescription = prompt("Enter new description:", oldDesc);
+
+  if (!newType || !newPrice || !newDescription) {
+    alert("⚠️ All fields are required!");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:8000/subscriptions/update", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        oldType,
+        newType,
+        price: newPrice,
+        description: newDescription,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert(data.message);
+      loadPlans(); // refresh
+    } else {
+      alert(data.message || "❌ Failed to update plan.");
+    }
+  } catch (error) {
+    console.error("Error updating plan:", error);
+    alert("❌ Error updating plan. Check backend connection.");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", loadPlans);
