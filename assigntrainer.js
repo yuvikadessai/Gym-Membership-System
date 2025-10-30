@@ -1,127 +1,41 @@
-// Sample member data
-const members = [
-  {
-    id: 1,
-    name: "Rohan Sharma",
-    gender: "Male",
-    plan: "Gold",
-    duration: "6 Months",
-    paymentStatus: "Paid",
-    trainer: "Rahul Singh"
-  },
-  {
-    id: 2,
-    name: "Priya Mehta",
-    gender: "Female",
-    plan: "Silver",
-    duration: "3 Months",
-    paymentStatus: "Pending",
-    trainer: "Sneha Kapoor"
-  },
-  {
-    id: 3,
-    name: "Amit Verma",
-    gender: "Male",
-    plan: "Gold",
-    duration: "1 Year",
-    paymentStatus: "Paid",
-    trainer: "Karan Mehra"
-  },
-  {
-    id: 4,
-    name: "Neha Patil",
-    gender: "Female",
-    plan: "Premium",
-    duration: "1 Year",
-    paymentStatus: "Paid",
-    trainer: "Aditi Rao"
-  }
-];
-
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("memberContainer");
 
-  members.forEach(member => {
-    const card = document.createElement("div");
-    card.classList.add("member-card");
+  // Fetch all members
+  fetch("http://localhost:8000/assigntrainers")
+    .then(res => res.json())
+    .then(members => {
+      container.innerHTML = members.map(member => `
+        <div class="member-card">
+          <h3>${member.firstName}</h3>
+          <p><b>Gender:</b> ${member.gender}</p>
+          <p><b>Plan:</b> ${member.plan}</p>
+          <p><b>Duration:</b> ${member.duration}</p>
+          <p><b>Payment Status:</b> ${member.payment_status}</p>
+          <p><b>Assigned Trainer:</b> ${member.trainer}</p>
 
-    card.innerHTML = `
-      <h3>${member.name}</h3>
-      <div class="member-details">
-        <p><strong>Gender:</strong> <span>${member.gender}</span></p>
-        <p><strong>Plan:</strong> <span>${member.plan}</span></p>
-        <p><strong>Duration:</strong> <span>${member.duration}</span></p>
-        <p><strong>Payment Status:</strong> <span>${member.paymentStatus}</span></p>
-      </div>
-      <div class="trainer-info">
-        <strong>Assigned Trainer:</strong> <span>${member.trainer || "Not Assigned"}</span>
-      </div>
-      <div class="action-buttons">
-        <button onclick="addTrainer(${member.id})">Add Trainer</button>
-        <button onclick="updateTrainer(${member.id})">Update Trainer</button>
-        <button onclick="removeTrainer(${member.id})">Remove Trainer</button>
-      </div>
-    `;
-
-    container.appendChild(card);
-  });
+          <label for="trainer-${member.member_id}">Assign Trainer:</label>
+          <input type="text" id="trainer-${member.member_id}" placeholder="Enter trainer name">
+          <button onclick="assignTrainer('${member.member_id}')">Assign</button>
+        </div>
+      `).join("");
+    })
+    .catch(err => console.error("Error fetching members:", err));
 });
 
-// Action Functions
-function addTrainer(id) {
-  const trainerName = prompt("Enter trainer name to assign:");
-  if (trainerName) {
-    const member = members.find(m => m.id === id);
-    member.trainer = trainerName;
-    alert(`${trainerName} assigned to ${member.name}`);
-    reloadCards();
-  }
-}
+function assignTrainer(memberId) {
+  const trainerName = document.getElementById(`trainer-${memberId}`).value.trim();
+  if (!trainerName) return alert("Please enter trainer name");
 
-function updateTrainer(id) {
-  const member = members.find(m => m.id === id);
-  const newTrainer = prompt(`Update trainer for ${member.name}:`, member.trainer);
-  if (newTrainer) {
-    member.trainer = newTrainer;
-    alert(`Trainer updated to ${newTrainer} for ${member.name}`);
-    reloadCards();
-  }
-}
-
-function removeTrainer(id) {
-  const member = members.find(m => m.id === id);
-  if (confirm(`Remove trainer from ${member.name}?`)) {
-    member.trainer = "Not Assigned";
-    alert(`Trainer removed from ${member.name}`);
-    reloadCards();
-  }
-}
-
-// Refresh cards dynamically
-function reloadCards() {
-  const container = document.getElementById("memberContainer");
-  container.innerHTML = "";
-  members.forEach(member => {
-    const card = document.createElement("div");
-    card.classList.add("member-card");
-
-    card.innerHTML = `
-      <h3>${member.name}</h3>
-      <div class="member-details">
-        <p><strong>Gender:</strong> <span>${member.gender}</span></p>
-        <p><strong>Plan:</strong> <span>${member.plan}</span></p>
-        <p><strong>Duration:</strong> <span>${member.duration}</span></p>
-        <p><strong>Payment Status:</strong> <span>${member.paymentStatus}</span></p>
-      </div>
-      <div class="trainer-info">
-        <strong>Assigned Trainer:</strong> <span>${member.trainer}</span>
-      </div>
-      <div class="action-buttons">
-        <button onclick="addTrainer(${member.id})">Add Trainer</button>
-        <button onclick="updateTrainer(${member.id})">Update Trainer</button>
-        <button onclick="removeTrainer(${member.id})">Remove Trainer</button>
-      </div>
-    `;
-    container.appendChild(card);
-  });
+  fetch("http://localhost:8000/assigntrainers/assign-trainer", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ member_id: memberId, trainer_name: trainerName })
+  })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      window.location.reload();
+    })
+    .catch(err => console.error("Error assigning trainer:", err));
 }
