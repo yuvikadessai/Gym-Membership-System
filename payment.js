@@ -55,4 +55,3 @@ document.getElementById("paymentForm").addEventListener("submit", async (e) => {
     alert(data.error || "Payment failed.");
   }
 });
-
