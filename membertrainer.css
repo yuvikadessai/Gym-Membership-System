@@ -1,0 +1,118 @@
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+header p {
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+/* Trainer Section */
+.trainer-section {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Trainer Photo */
+.trainer-photo {
+  text-align: center;
+}
+
+.trainer-photo img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid #a8ff98;
+  margin-bottom: 10px;
+}
+
+.trainer-photo h2 {
+  color: #a8ff98;
+  margin: 10px 0 5px;
+}
+
+.trainer-role {
+  color: #ffffff;
+  font-style: italic;
+}
+
+/* Trainer Info */
+.trainer-info {
+  background: #0000001e;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgb(0, 0, 0);
+  flex: 1;
+  min-width: 300px;
+}
+
+.info-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #a8ff98;
+  margin-bottom: 5px;
+}
+
+.info-group p {
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+.trainer-buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+.schedule-btn, .contact-btn {
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-btn {
+  background-color: #a8ff98;
+  color: #20232a;
+}
+
+.contact-btn:hover {
+  opacity: 0.8;
+}
+
+/* .contact-btn {
+  background-color: transparent;
+  border: 1px solid #a8ff98;
+  color: #a8ff98;
+}
+
+.contact-btn:hover {
+  background-color: #a8ff98;
+  color: #20232a;
+} */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trainer-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .trainer-info {
+    width: 100%;
+  }
+}
