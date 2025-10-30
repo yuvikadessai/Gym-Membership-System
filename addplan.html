@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Plan | FitHub</title>
+  <link rel="stylesheet" href="addplan.css">
+</head>
+<body>
+  <div class="addplan-container">
+    <h1>Add a New Subscription Plan</h1>
+    <form id="addPlanForm">
+      <label>Plan Name:</label>
+      <input type="text" id="planName" required>
+
+      <label>Description:</label>
+      <textarea id="planDesc" rows="4" required></textarea>
+
+      <label>Price (₹ per month):</label>
+      <input type="number" id="planPrice" required>
+
+      <button type="submit">Add Plan</button>
+      <button type="button" onclick="window.location.href='adminsubscriptions.html'">Cancel</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("addPlanForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const name = document.getElementById("planName").value;
+      const desc = document.getElementById("planDesc").value;
+      const price = document.getElementById("planPrice").value;
+
+      const newPlan = { name, description: desc, price: parseInt(price), members: 0 };
+
+      let plans = JSON.parse(localStorage.getItem("gymPlans")) || [];
+      plans.push(newPlan);
+      localStorage.setItem("gymPlans", JSON.stringify(plans));
+
+      alert("Plan added successfully!");
+      window.location.href = "adminsubscriptions.html";
+    });
+  </script>
+</body>
+</html>
