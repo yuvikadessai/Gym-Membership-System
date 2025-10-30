@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitHub | Members</title>
+  <link rel="stylesheet" href="member.css">
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="fithublogo.png" width="100" alt="FitHub Logo">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li><a href="admindashboard.html">Dashboard</a></li>
+        <li><a href="member.html">Members</a></li>
+        <li><a href="trainers.html">Trainers</a></li>
+        <li><a href="#" class="active">Payments</a></li>
+        <li><a href="assigntrainer.html">Assign Trainers</a></li>
+        <li><a href="adminsubscriptions.html">Add Subscriptions</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>All Members</h1>
+        <p>Overview of every active and expired membership 👥</p>
+      </header>
+
+      <section class="members-list">
+        <table class="member-table">
+          <thead>
+            <tr>
+              <th>Member ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Membership ID</th>
+              <th>Enrollment Date</th>
+              <th>Expiry Date</th>
+            </tr>
+          </thead>
+          <tbody id="memberTableBody">
+            <tr><td colspan="7">Loading...</td></tr>
+          </tbody>
+        </table>
+      </section>
+      
+    </main>
+  </div>
+
+  <script src="member.js"></script>
+</body>
+</html>
