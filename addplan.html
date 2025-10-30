@@ -24,22 +24,6 @@
     </form>
   </div>
 
-  <script>
-    document.getElementById("addPlanForm").addEventListener("submit", e => {
-      e.preventDefault();
-      const name = document.getElementById("planName").value;
-      const desc = document.getElementById("planDesc").value;
-      const price = document.getElementById("planPrice").value;
-
-      const newPlan = { name, description: desc, price: parseInt(price), members: 0 };
-
-      let plans = JSON.parse(localStorage.getItem("gymPlans")) || [];
-      plans.push(newPlan);
-      localStorage.setItem("gymPlans", JSON.stringify(plans));
-
-      alert("Plan added successfully!");
-      window.location.href = "adminsubscriptions.html";
-    });
-  </script>
+  <script src="addplan.js"></script>
 </body>
 </html>
