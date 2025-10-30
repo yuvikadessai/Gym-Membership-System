@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitHub | Trainers Management</title>
+  <link rel="stylesheet" href="trainers.css">
+  <link rel="stylesheet" href="member.css">
+</head>
+<body>
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <img src="fithublogo.png" width="100" alt="FitHub Logo">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li><a href="admindashboard.html">Dashboard</a></li>
+        <li><a href="member.html">Members</a></li>
+        <li><a href="#" class="active">Trainers</a></li>
+        <li><a href="paydashboard.html">Payments</a></li>
+        <li><a href="assigntrainer.html">Assign Trainers</a></li>
+        <li><a href="adminsubscriptions.html">Add Subscriptions</a></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <h1>Trainers Management</h1>
+        <p>View and manage all gym trainers</p>
+      </header>
+
+      <!-- Trainers Table -->
+      <section class="table-section">
+        <div class="table-container">
+          <table id="trainersTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Experience</th>
+                <th>Phone</th>
+                <th>Specialization</th>
+              </tr>
+            </thead>
+            <tbody id="trainersTableBody">
+              <tr>
+                <td colspan="7" class="loading-cell">
+                  <div class="loader"></div>
+                  <p>Loading trainers from database...</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- View Details Modal -->
+  <div id="detailsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Trainer Details</h2>
+      <div id="trainerDetails"></div>
+    </div>
+  </div>
+
+  <script src="trainers.js"></script>
+</body>
+</html>
