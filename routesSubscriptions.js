@@ -159,4 +159,38 @@ router.put("/update", (req, res) => {
   });
 });
 
+
+// ✅ Delete a plan
+router.delete("/:membership_id", (req, res) => {
+  const { membership_id } = req.params;
+
+  if (!membership_id) {
+    return res.status(400).json({ message: "Membership ID is required" });
+  }
+
+  // Step 1: Unlink plan from members who are using it
+  const unlinkMembers = "UPDATE register SET membership_id = NULL WHERE membership_id = ?";
+  db.query(unlinkMembers, [membership_id], (unlinkErr) => {
+    if (unlinkErr) {
+      console.error("❌ Error unlinking members:", unlinkErr);
+      return res.status(500).json({ message: "Error while unlinking members" });
+    }
+
+    // Step 2: Delete plan from membership table
+    const deleteQuery = "DELETE FROM membership WHERE membership_id = ?";
+    db.query(deleteQuery, [membership_id], (deleteErr, result) => {
+      if (deleteErr) {
+        console.error("❌ Error deleting plan:", deleteErr);
+        return res.status(500).json({ message: "Database error while deleting plan" });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: "Plan not found" });
+      }
+
+      res.json({ success: true, message: "✅ Plan deleted successfully!" });
+    });
+  });
+});
+
 module.exports = router;
