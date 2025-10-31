@@ -3,7 +3,6 @@ async function loadPlans() {
   container.innerHTML = "<p>Loading plans...</p>";
 
   try {
-    // Fetch all plans from backend (DB)
     const res = await fetch("http://localhost:8000/subscriptions");
     const plans = await res.json();
 
@@ -22,7 +21,10 @@ async function loadPlans() {
         <p><strong>Description:</strong> ${plan.description || "No description provided"}</p>
         <p><strong>Price:</strong> ₹${plan.price}/month</p>
         <p><strong>Duration:</strong> ${plan.duration} month(s)</p>
-        <button onclick="updatePlan('${plan.type}', '${plan.description}', ${plan.price})">✏️ Update Plan</button>
+        <div class="plan-actions">
+          <button onclick="updatePlan('${plan.type}', '${plan.description}', ${plan.price})">✏️ Update</button>
+          <button class="delete-btn" onclick="deletePlan('${plan.membership_id}')">🗑️ Delete</button>
+        </div>
       `;
 
       container.appendChild(card);
@@ -33,7 +35,7 @@ async function loadPlans() {
   }
 }
 
-// ✅ Update Plan (name, price, and description)
+// ✅ Update Plan
 async function updatePlan(oldType, oldDesc, oldPrice) {
   const newType = prompt("Enter new plan name:", oldType);
   const newPrice = prompt("Enter new price:", oldPrice);
@@ -67,6 +69,29 @@ async function updatePlan(oldType, oldDesc, oldPrice) {
   } catch (error) {
     console.error("Error updating plan:", error);
     alert("❌ Error updating plan. Check backend connection.");
+  }
+}
+
+// 🗑️ Delete Plan
+async function deletePlan(membership_id) {
+  if (!confirm("Are you sure you want to delete this plan?")) return;
+
+  try {
+    const res = await fetch(`http://localhost:8000/subscriptions/${membership_id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      alert(data.message);
+      loadPlans(); // Refresh list
+    } else {
+      alert(data.message || "❌ Failed to delete plan.");
+    }
+  } catch (error) {
+    console.error("Error deleting plan:", error);
+    alert("❌ Error deleting plan. Check backend connection.");
   }
 }
 
