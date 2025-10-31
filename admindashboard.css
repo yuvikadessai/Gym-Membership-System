@@ -93,7 +93,7 @@ header p {
 }
 
 .card {
-  background: #fff;
+  background: #ffffff;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -139,6 +139,11 @@ header p {
 
 
 
+.chart-card {
+  background: #111; /* dark background behind chart */
+  border: 1px solid #222;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
 
 
 
