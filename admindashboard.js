@@ -1,5 +1,3 @@
-
-
 // admindashboard.js - Dynamic Admin Dashboard with Charts
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -23,8 +21,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     // --- Gender Data ---
-    const male = data.gender?.find(g => g.gender === "Male")?.count || 0;
-    const female = data.gender?.find(g => g.gender === "Female")?.count || 0;
+    console.log("Raw gender data:", data.gender);
+    
+    // Handle both lowercase and capitalized gender values
+    const male = data.gender?.find(g => 
+      g.gender && g.gender.toLowerCase() === "male"
+    )?.count || 0;
+    
+    const female = data.gender?.find(g => 
+      g.gender && g.gender.toLowerCase() === "female"
+    )?.count || 0;
+    
+    console.log("🔍 Gender data - Male:", male, "Female:", female);
 
     // --- Monthly Members Joined (Bar Chart) ---
     const months = data.monthly?.map(m => m.month) || [];
@@ -38,8 +46,12 @@ document.addEventListener("DOMContentLoaded", async () => {
           datasets: [{
             label: "Members Joined",
             data: memberCounts,
-            backgroundColor: "rgba(102, 126, 234, 0.8)",
-            borderColor: "rgba(102, 126, 234, 1)",
+            //backgroundColor: "rgba(168, 255, 152, 0.8)",
+            //borderColor: "rgba(168, 255, 152, 1)",
+
+            backgroundColor: "rgba(147, 51, 234, 0.8)", // Purple color
+        borderColor: "rgba(147, 51, 234, 1)",
+
             borderWidth: 2,
             borderRadius: 8
           }]
@@ -63,53 +75,79 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         }
       });
+      console.log("✅ Monthly members chart created");
     } else {
       console.warn("No monthly data available");
     }
 
-    // --- Gender Ratio (Pie Chart) ---
-    if (male > 0 || female > 0) {
-      new Chart(document.getElementById("genderChart"), {
-        type: "pie",
+    // --- Gender Distribution (Horizontal Bar Chart) ---
+    const genderCanvas = document.getElementById("genderChart");
+    if (!genderCanvas) {
+      console.error("❌ Gender chart canvas not found!");
+    } else if (male > 0 || female > 0) {
+      new Chart(genderCanvas, {
+        type: "bar",
         data: {
           labels: ["Male", "Female"],
           datasets: [{
+            label: "Member Count",
             data: [male, female],
-            backgroundColor: ["#667eea", "#764ba2"],
+            backgroundColor: ["#3b82f6", "#ec4899"],
             borderWidth: 2,
-            borderColor: "#fff"
+            borderColor: "#fff",
+            borderRadius: 8
           }]
         },
         options: {
+          indexAxis: 'y', // Makes bars horizontal
           responsive: true,
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              position: 'bottom'
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const label = context.label || '';
+                  const value = context.parsed.x || 0;
+                  const total = male + female;
+                  const percentage = ((value / total) * 100).toFixed(1);
+                  return `${label}: ${value} (${percentage}%)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: { 
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1
+              }
             }
           }
         }
       });
+      console.log("✅ Gender chart created successfully");
     } else {
       console.warn("No gender data available");
+      genderCanvas.parentElement.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">No gender data available</p>';
     }
 
     // --- Payment Status (Pie Chart) ---
     console.log("Payment data:", data.payments);
     
     if (data.payments && data.payments.length > 0) {
-      // Extract payment statuses - should now be: Completed, Pending, Not Paid
       const paymentLabels = data.payments.map(p => p.status || 'Not Paid');
       const paymentCounts = data.payments.map(p => p.count || 0);
       
       console.log("Payment labels:", paymentLabels);
       console.log("Payment counts:", paymentCounts);
       
-      // Color mapping
       const paymentColors = {
-        'Completed': '#10b981',  // Green
-        'Pending': '#f59e0b',    // Orange
-        'Not Paid': '#ef4444'    // Red
+        'Completed': '#10b981',
+        'Pending': '#f59e0b',
+        'Not Paid': '#ef4444'
       };
       
       const backgroundColors = paymentLabels.map(label => 
@@ -151,15 +189,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
           }
         });
+        console.log("✅ Payment chart created");
       } else {
-        const ctx = document.getElementById("paymentChart");
-        ctx.parentElement.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">No payment data available</p>';
+        document.getElementById("paymentChart").parentElement.innerHTML = 
+          '<p style="text-align:center;padding:40px;color:#999;">No payment data available</p>';
       }
     } else {
-      console.warn("No payment data available. Payment data structure:", data.payments);
-      // Show empty chart with message
-      const ctx = document.getElementById("paymentChart");
-      ctx.parentElement.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">No payment data available</p>';
+      console.warn("No payment data available");
+      document.getElementById("paymentChart").parentElement.innerHTML = 
+        '<p style="text-align:center;padding:40px;color:#999;">No payment data available</p>';
     }
 
     // --- Membership Status (Pie Chart) ---
@@ -179,7 +217,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             labels: ["Active", "Inactive", "Expiring Soon"],
             datasets: [{
               data: [activePlans, inactivePlans, expiringPlans],
-              backgroundColor: ["#10b981", "#6b7280", "#f59e0b"],
+              backgroundColor: ["#10b981", "red", "#f59e0b"],
               borderWidth: 2,
               borderColor: "#fff"
             }]
@@ -194,15 +232,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
           }
         });
+        console.log("✅ Membership chart created");
       } else {
-        const ctx = document.getElementById("membershipChart");
-        ctx.parentElement.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">No active memberships. Please add expiry dates to member records.</p>';
+        document.getElementById("membershipChart").parentElement.innerHTML = 
+          '<p style="text-align:center;padding:40px;color:#999;">No active memberships. Please add expiry dates to member records.</p>';
       }
     } else {
-      console.warn("No membership status data available. Data structure:", data.membership_status);
-      // Show empty chart with message
-      const ctx = document.getElementById("membershipChart");
-      ctx.parentElement.innerHTML = '<p style="text-align:center;padding:40px;color:#999;">No membership status data available</p>';
+      console.warn("No membership status data available");
+      document.getElementById("membershipChart").parentElement.innerHTML = 
+        '<p style="text-align:center;padding:40px;color:#999;">No membership status data available</p>';
     }
 
     console.log("✅ Dashboard loaded successfully!");
@@ -210,7 +248,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     console.error("❌ Error loading dashboard:", err);
     
-    // Show error message to user
     const mainContent = document.querySelector(".main-content");
     const errorDiv = document.createElement("div");
     errorDiv.className = "error-message";
@@ -234,9 +271,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
     mainContent.insertBefore(errorDiv, mainContent.firstChild);
   }
-}); 
-
-
-
-
-
+});
