@@ -52,7 +52,7 @@ router.get("/", (req, res) => {
   const query = `
     SELECT 
       r.member_id,
-      r.firstName,
+      CONCAT(r.firstName, ' ', r.lastName) AS name,
       r.gender,
       COALESCE(m.type, 'No Plan Selected') AS plan,
       COALESCE(m.duration, '-') AS duration,
