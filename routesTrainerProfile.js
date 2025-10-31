@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
       t.phone
     FROM register r
     LEFT JOIN trainer t 
-      ON r.assigned_trainer = CONCAT(t.t_fname, ' ', t.t_lname)
+      ON r.assigned_trainer = CONCAT(t.t_fname, ' ', t.t_lname) 
     WHERE r.member_id = ?
   `;
 
