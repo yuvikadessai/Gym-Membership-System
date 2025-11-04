@@ -20,6 +20,7 @@ const routerAssignTrainers = require("./routesAssignTrainers");
 const routerSubscriptions = require("./routesSubscriptions");
 const routerTrainerProfile = require("./routesTrainerProfile");
 const routerAdminDashboard = require("./routesAdminDashboard");
+const routerDownloadReport = require("./routesDownloadReport");
 
 dotenv.config();
 const app = express();
@@ -73,6 +74,7 @@ app.use("/assigntrainers", routerAssignTrainers);
 app.use("/subscriptions", routerSubscriptions);
 app.use("/trainerdetails", routerTrainerProfile);
 app.use("/adminDash", routerAdminDashboard);
+app.use("/downloadreport", routerDownloadReport);
 
 console.log("✅ All routes mounted");
 
