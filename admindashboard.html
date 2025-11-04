@@ -29,6 +29,7 @@
       <header>
         <h1>Welcome, <span class="admin-name">Admin</span></h1>
         <p>Manage FitHub performance & analytics ⚙️</p>
+        <button onclick="downloadCompleteReport()" id="report">Download Report</button>
       </header>
 
       <!-- Stats Cards -->
@@ -81,5 +82,9 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="admindashboard.js"></script>
+  <script src="download_report.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
 </body>
 </html>
