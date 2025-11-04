@@ -216,23 +216,23 @@ router.get("/", (req, res) => {
         SELECT 
           CASE 
             WHEN expiry_date IS NULL THEN 'inactive'
-            WHEN expiry_date >= CURDATE() THEN 'active'
-            WHEN expiry_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 'expiring'
-            ELSE 'inactive'
+            WHEN expiry_date < CURDATE() THEN 'inactive'
+            WHEN expiry_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 'expiring soon'
+            ELSE 'active'
           END as status,
           COUNT(*) AS count
         FROM register
         GROUP BY 
-          CASE 
-            WHEN expiry_date IS NULL THEN 'inactive'
-            WHEN expiry_date >= CURDATE() THEN 'active'
-            WHEN expiry_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 'expiring'
-            ELSE 'inactive'
+          CASE
+          WHEN expiry_date IS NULL THEN 'inactive' 
+          WHEN expiry_date < CURDATE() THEN 'inactive' 
+          WHEN expiry_date BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() THEN 'expiring soon'
+          ELSE 'active'
           END
       ` : `
         SELECT 'active' as status, COUNT(*) as count FROM register
         UNION ALL SELECT 'inactive' as status, 0 as count
-        UNION ALL SELECT 'expiring' as status, 0 as count
+        UNION ALL SELECT 'expiring soon' as status, 0 as count
       `,
       
       // Active memberships
@@ -247,7 +247,7 @@ router.get("/", (req, res) => {
         SELECT COUNT(*) AS expiring
         FROM register
         WHERE expiry_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
-      ` : `SELECT 0 AS expiring`
+      ` : `SELECT 0 AS expiring soon`
     };
 
     // Run all queries in parallel
