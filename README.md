@@ -50,5 +50,4 @@ The system uses a **relational database** with these tables:
 
 ---
 
-## 🗂 Project Structure
 
