@@ -774,3 +774,13 @@ header p {
     grid-template-columns: 1fr;
   }
 }
+
+#report{
+  background-color:#a8ff98;
+  padding:20px;
+  color:black;
+  border:none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+}
